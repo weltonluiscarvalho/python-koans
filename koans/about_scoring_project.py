@@ -34,7 +34,77 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+
+    total_points = 0
+    total_points2 = 0
+    number_of_ones = 0
+    number_of_twos = 0
+    number_of_threes = 0
+    number_of_fours = 0
+    number_of_fives = 0
+    number_of_sixs = 0
+
+    numbers_quantity = {
+        "number_of_ones": 0,
+        "number_of_twos": 0,
+        "number_of_threes": 0,
+        "number_of_fours": 0,
+        "number_of_fives": 0,
+        "number_of_sixs": 0
+    }
+
+    for number in dice:
+        if number == 1:
+            number_of_ones += 1
+            numbers_quantity["number_of_ones"] += 1
+        elif number == 2:
+            number_of_twos += 1
+            numbers_quantity["number_of_twos"] += 1
+        elif number == 3:
+            number_of_threes += 1
+            numbers_quantity["number_of_threes"] += 1
+        elif number == 4:
+            number_of_fours += 1 
+            numbers_quantity["number_of_fours"] += 1
+        elif number == 5:
+            number_of_fives += 1 
+            numbers_quantity["number_of_fives"] += 1
+        else:
+            number_of_sixs += 1
+            numbers_quantity["number_of_sixs"] += 1
+
+    if number_of_ones >= 3:
+        total_points += 1000
+        number_of_ones -= 3
+
+        total_points += number_of_ones * 100
+
+    elif number_of_ones:
+        total_points += number_of_ones * 100
+
+    if number_of_twos >= 3:
+        total_points += 100 * 2
+
+    if number_of_threes >= 3:
+        total_points += 100 * 3
+
+    if number_of_fours >= 3:
+        total_points += 100 * 4
+    
+    if number_of_fives >= 3:
+        total_points += 100 * 5
+        number_of_fives -= 3
+
+        total_points += number_of_fives * 50
+
+    elif number_of_fives:
+        total_points += number_of_fives * 50
+
+    if number_of_sixs >= 3:
+        total_points += 100 * 6
+
+    return total_points
+
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
